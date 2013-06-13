@@ -1,0 +1,77 @@
+			<aside class="span{$li->sb_width} hidden-phone" id="sb">
+				<include target="custom/custom_sidebar_top.html" cond="$li->custom_sidebar_top=='yes'" />
+				<ul class="well nav nav-list ac" loop="$main_menu->list=>$key1,$val1" cond="$val1['selected'] && $val1['list']">
+					<li class="nav-header" cond="$val1['selected']">{$val1['link']}</li>
+						<block loop="$val1['list']=>$key2,$val2">
+							<!--@if($val2['link']!="----")-->
+								<li class="active"|cond="$val2['selected']">
+									<a href="{$val2['href']}" target="_blank"|cond="$val2['open_window']=='Y'">{$val2['link']}</a>
+									<ul cond="$val2['list']" class="nav nav-list">
+										<block loop="$val2['list']=>$key3,$val3" cond="$val3['link']">
+											<!--@if($val3['link']!="----")-->
+												<li class="active"|cond="$val3['selected']">
+													<a href="{$val3['href']}" target="_blank"|cond="$val3['open_window']=='Y'">{$val3['link']}</a>
+													<ul cond="$val3['list']" class="nav nav-list">
+														<block loop="$val3['list']=>$key4,$val4" cond="$val4['link']">
+															<!--@if($val4['link']!="----")-->
+																<li class="active"|cond="$val4['selected']"><a href="{$val4['href']}" target="_blank"|cond="$val4['open_window']=='Y'">{$val4['link']}</a></li>
+															<!--@else-->
+																<li class="divider"></li>
+															<!--@end-->
+														</block>
+													</ul>
+												</li>
+											<!--@else-->
+												<li class="divider"></li>
+											<!--@end-->
+										</block>					
+									</ul>
+								</li>
+							<!--@else-->
+								<li class="divider"></li>
+							<!--@end-->
+						</block>
+				</ul>
+				<block cond="$li->sb_category!='no' && $module_info->use_category=='Y'">
+					{@ $pDepth = 0;}
+					<ul class="well nav nav-list ac">
+						<li class="nav-header"><i class="icon-list-ul" cond="$li->sb_header_icon!='no'"></i> Category</li>
+						<block loop="$category_list=>$key,$val">
+							<block cond="$pDepth > $val->depth">
+								<block loop="$i=$val->depth; $i<$pDepth; $i++">
+									</ul>
+									</li>
+								</block>
+								{@ $pDepth = $val->depth}
+							</block>
+							<li class="active"|cond="$category==$val->category_srl">
+								<a href="{getUrl('category',$val->category_srl)}" class="<!--@if($layout_info->frame=='fluid2')-->tooltip-left<!--@else-->tooltip-right<!--@end-->" data-title="{$val->document_count}">{$val->text}</a>
+							<block cond="$val->child_count">
+								{@$pDepth++}
+								<ul class="nav nav-list">
+							</block>
+							<block cond="!$val->child_count">
+								</li>
+							</block>
+						</block><!--//loop-->
+						<block loop="$i=0;$i<$pDepth;$i++">
+							</ul>
+						</block>
+							</li>
+						</ul>
+				</block>
+				<div class="well sb_recent_doc ac" cond="$li->sb_recent_doc!='no'">
+					<img class="zbxe_widget_output" widget="content" skin="tb_sb" content_type="document" module_srls="{$li->sb_recent_doc_module}" list_type="normal" markup_type="list" page_count="1" option_view="title,nickname" show_comment_count="Y" show_trackback_count="Y" order_type="desc" subject_cut_size="{9*$li->sb_width}" list_count="5" />
+				</div>
+				<div class="well sb_recent_comm ac" cond="$li->sb_recent_comm!='no'">
+					<img class="zbxe_widget_output" widget="content" skin="tb_sb" content_type="comment" module_srls="{$li->sb_recent_doc_module}" list_type="normal" markup_type="list" page_count="1" option_view="title,nickname" show_comment_count="Y" show_trackback_count="Y" order_type="desc" subject_cut_size="{9*$li->sb_width}" list_count="5" />
+				</div>
+				<script type="text/javascript">
+					jQuery("aside#sb .sb_recent_doc ul.nav-list").prepend("<li class='nav-header'><!--@if($li->sb_header_icon!='no')--><i class='icon-rss'></i><!--@end-->Recent Posts</li>");
+					jQuery("aside#sb .sb_recent_comm ul.nav-list").prepend("<li class='nav-header'><!--@if($li->sb_header_icon!='no')--><i class='icon-comments'></i><!--@end-->Recent Comments</li>");
+				</script>
+				<div class="well sb1" cond="$li->sb1">{$li->sb1}</div>
+				<div class="well sb2" cond="$li->sb2">{$li->sb2}</div>
+				<div class="well sb3" cond="$li->sb3">{$li->sb3}</div>
+				<include target="custom/custom_sidebar_bottom.html" cond="$li->custom_sidebar_bottom=='yes'" />
+			</aside>

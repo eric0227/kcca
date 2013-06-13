@@ -1,0 +1,952 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.2">
+    <title xml:lang="ko">The Bootstrap</title>
+    <title xml:lang="en">The Bootstrap</title>
+    <description xml:lang="ko">Bootstrap 2로 만든 심플한 레이아웃입니다.</description>
+    <description xml:lang="en">Bulid of Bootstrap 2.</description>
+    <version>3.5.0.1</version>
+    <date>2012-07-14</date>
+    <author email_address="wincomi@me.com" link="http://www.wincomi.com">
+        <name xml:lang="ko">윈컴이</name>
+        <name xml:lang="en">Wincomi</name>
+    </author>
+	<extra_vars>
+		<group>
+			<title xml:lang="ko">1. 기본</title>
+			<title xml:lang="en">1. Default</title>
+			<var name="xe_version" type="select">
+				<title xml:lang="ko">XE 버전</title>
+				<title xml:lang="en">XE Version</title>
+				<options value="xe17">
+					<title xml:lang="ko">XE 1.7</title>
+					<title xml:lang="en">XE 1.7</title>
+				</options>
+				<options value="xe15">
+					<title xml:lang="ko">XE 1.5</title>
+					<title xml:lang="en">XE 1.5</title>
+				</options>
+			</var>
+			<var name="logo_title" type="text">
+				<title xml:lang="ko">홈페이지 이름</title>
+				<title xml:lang="en">Website Name</title>
+				<description xml:lang="ko">홈페이지 이름을 입력하세요.</description>
+				<description xml:lang="en">Enter the website name.</description>
+			</var>
+			<var name="index_url" type="text">
+				<title xml:lang="ko">홈페이지 주소</title>
+				<title xml:lang="en">Website Adress</title>
+				<description xml:lang="ko">홈페이지 이름을 클릭 시 이동 할 URL을 입력하세요.</description>
+				<description xml:lang="en">Enter the URL to move when clicked website name.</description>
+			</var>
+			<var name="logo_img" type="image">
+				<title xml:lang="ko">홈페이지 로고 (선택)</title>
+				<title xml:lang="en">Website Logo</title>
+				<description xml:lang="ko">png 형식, 하얀색 글자, 높이 20px 추천</description>
+				<description xml:lang="en">png file.</description>
+			</var>
+			<var name="site_template" type="select">
+				<title xml:lang="ko">사이트 템플릿</title>
+				<title xml:lang="en">Site template</title>
+				<description xml:lang="ko">사이트의 템플릿을 정하세요.</description>
+				<options value="default">
+					<title xml:lang="ko">(기본) 상단바 고정</title>
+					<title xml:lang="en">(Default) Fixed navbar</title>
+				</options>
+				<options value="carousel">
+					<title xml:lang="ko">슬라이더 강조</title>
+					<title xml:lang="en">Carousel Highlight</title>
+				</options>
+				<options value="usual1">
+					<title xml:lang="ko">일반 레이아웃 형식 (1)</title>
+					<title xml:lang="en">Usual (1)</title>
+				</options>
+				<options value="usual2">
+					<title xml:lang="ko">일반 레이아웃 형식 (2)</title>
+					<title xml:lang="en">Usual (2)</title>
+				</options>
+			</var>
+			<var name="frame" type="select">
+				<title xml:lang="ko">프레임 형태</title>
+				<title xml:lang="en">Frame</title>
+				<!-- <description xml:lang="ko">사이드바 위치를 정하세요.</description> -->
+				<options value="fluid">
+					<title xml:lang="ko">(기본) 사이드바 + 컨텐트</title>
+					<title xml:lang="en">(Default) Sidebar + Content</title>
+				</options>
+				<options value="fluid2">
+					<title xml:lang="ko">컨텐트 + 사이드바</title>
+					<title xml:lang="en">Content + Sidebar</title>
+				</options>
+				<options value="fixed">
+					<title xml:lang="ko">컨텐트</title>
+					<title xml:lang="en">content</title>
+				</options>
+			</var>
+			<var name="force_content" type="text">
+				<title xml:lang="ko">강제 프레임 변경</title>
+				<title xml:lang="en">Change frame force</title>
+				<description xml:lang="ko">
+				메인 페이지 같이, '컨텐트'만 출력을 원하는 모듈 명을 적어주세요.
+				이 경우 위의 '사이드바 + 컨텐트' 등은 무시됩니다.
+				구분은 "," (쉼표)로 구분합니다. 
+				예) home, force
+				</description>
+				<description xml:lang="en">
+				Like the main page, write down module id to output only 'Content'.
+				In this case, the 'sidebar + content' will be ignored.
+				Divisions are separated by a comma.
+				ex) home, force
+				</description>
+			</var>
+			<var name="design" type="select">
+				<title xml:lang="ko">디자인</title>
+				<title xml:lang="en">Design</title>
+				<description xml:lang="ko">디자인을 선택하세요. 상단바 색도 확인하여 변경하여 보세요.</description>
+				<description xml:lang="en">Select the design.</description>
+				<options value="default">
+					<title xml:lang="ko">기본 (Dark)</title>
+					<title xml:lang="en">Default (Dark)</title>
+				</options>
+				<options value="divider1">
+					<title xml:lang="ko">--------------------------------</title>
+					<title xml:lang="en">--------------------------------</title>
+				</options>
+				<options value="cerulean">
+					<title xml:lang="ko">Skyblue (Cerulean) by Bootswatch</title>
+					<title xml:lang="en">Skyblue (Cerulean) by Bootswatch</title>
+				</options>
+				<options value="simplex">
+					<title xml:lang="ko">Simplex by Bootswatch</title>
+					<title xml:lang="en">Simplex by Bootswatch</title>
+				</options>
+				<options value="ubuntu">
+					<title xml:lang="ko">Orange (United) by Bootswatch</title>
+					<title xml:lang="en">Orange (United) by Bootswatch</title>
+				</options>
+				<options value="cosmo">
+					<title xml:lang="ko">Metro (Cosmo) by Bootswatch</title>
+					<title xml:lang="en">Metro (Cosmo) by Bootswatch</title>
+				</options>
+				<options value="divider2">
+					<title xml:lang="ko">--------------------------------</title>
+					<title xml:lang="en">--------------------------------</title>
+				</options>
+				<options value="custom">
+					<title xml:lang="ko">커스텀 디자인 (custom/custom_skin.css)</title>
+					<title xml:lang="en">Custom Design (custom/custom_skin.css)</title>
+				</options>
+			</var>
+			<!--<var name="custom_skin_info">
+				<title xml:lang="ko">커스텀 디자인</title>
+				<title xml:lang="en">Custom Design</title>
+				<description xml:lang="ko">커스텀 디자인을 활성화 하려면 custom 스킨 폴더에 custom_skin.css에 넣어주세요.</description>
+				<description xml:lang="en">custom > custom_skin.css</description>
+			</var>-->
+
+			<var name="responsive" type="select">
+				<title xml:lang="ko">반응형 웹</title>
+				<title xml:lang="en">Responsive</title>
+				<description xml:lang="ko">이 기능을 사용하지 않을 경우 와이드 뷰/모바일/테블릿 뷰가 보이지 않으며, 일반 PC용 사이즈로 변경됩니다. (bootstrap.responsive.min.css)</description>
+				<description xml:lang="en">If you select No, Mobile view will not working.</description>
+				<options value="yes">
+					<title xml:lang="ko">[권장] 사용</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+				<options value="no">
+					<title xml:lang="ko">[비권장] 사용 안함</title>
+					<title xml:lang="en">No</title>
+				</options>
+			</var>
+			<var name="container_width" type="text">
+				<title xml:lang="ko">홈페이지 너비</title>
+				<title xml:lang="en">Container width</title>
+				<description xml:lang="ko">(!) 반응형웹을 사용 안 할 경우 px를 제외한 홈페이지의 너비를 입력해주세요. (기본 : 940px)</description>
+				<description xml:lang="en">(!) If you don't use Responsive, write container width. (default : 940px)</description>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">2. 상단바</title>
+			<title xml:lang="en">2. Navbar</title>
+
+			<var name="navbar_color" type="select">
+				<title xml:lang="ko">색</title>
+				<title xml:lang="en">Color</title>
+				<description xml:lang="ko">디자인 별로 색이 다릅니다. (기본일 경우 반전은 검정) 둘 중 하나를 선택 후 확인해보세요. (navbar-inverse를 추가합니다.)</description>
+				<description xml:lang="en">Inverse is black, and Default is white in Default Design</description>
+				<options value="inverse">
+					<title xml:lang="ko">반전</title>
+					<title xml:lang="en">Inverse</title>
+				</options>
+				<options value="default">
+					<title xml:lang="ko">기본</title>
+					<title xml:lang="en">Default</title>
+				</options>
+			</var>
+			<var name="top_search" type="select">
+				<title xml:lang="ko">검색 폼</title>
+				<title xml:lang="en">Search form</title>
+				<!--<description xml:lang="ko">검색 폼을 어떻게 표시할까요?</description>
+				<description xml:lang="en">How to display search form?</description>-->
+				<options value="dropdown">
+					<title xml:lang="ko">드랍다운 형식</title>
+					<title xml:lang="en">Dropdown</title>
+				</options>
+				<options value="default">
+					<title xml:lang="ko">일반 (상단바에 바로 표시)</title>
+					<title xml:lang="en">Default</title>
+				</options>
+				<options value="no">
+					<title xml:lang="ko">표시 안함</title>
+					<title xml:lang="en">Not display</title>
+				</options>
+			</var>
+
+			<var name="use_login_tooltip" type="select">
+				<title xml:lang="ko">로그인 설명 툴 팁</title>
+				<title xml:lang="en">Login Tooltip</title>
+				<description xml:lang="ko">비회원일 경우, 로그인을 어디서 하는지 알려주는 툴팁을 사용합니다.</description>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+			</var>
+	
+			<var name="use_social_login" type="select">
+				<title xml:lang="ko">소셜 로그인</title>
+				<title xml:lang="en">Social Login</title>
+				<description xml:lang="ko">메뉴에 소셜 로그인을 추가합니다. * 난다날아님의 SocialXE 모듈이 필요합니다.</description>
+				<description xml:lang="en">* Need SocialXE Module</description>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+			</var>
+			<var name="member_point" type="select">
+				<title xml:lang="ko">회원 포인트 출력</title>
+				<title xml:lang="en">Member point</title>
+				<description xml:lang="ko">상단바의 회원 버튼을 클릭하였을 때 나오는 메뉴에 회원 포인트를 출력합니다. (포인트 현황 위젯이 필요합니다.)</description>
+				<description xml:lang="en">Show member point at Member menu. (Need point status widget)</description>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+			</var>
+			<var name="message_list" type="select">
+				<title xml:lang="ko">쪽지함 아이콘 표시</title>
+				<title xml:lang="en">Show Message Box</title>
+				<description xml:lang="ko">레이아웃 내에서 상단바에 쪽지함을 표시합니다.</description>
+				<description xml:lang="en">Show message box at navbar.</description>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+			</var>
+			<var name="tb_good_view" type="select">
+				<title xml:lang="ko">Good View 아이콘</title>
+				<title xml:lang="en">Layout setting (Good View) icon</title>
+				<description xml:lang="ko">상단바에 레이아웃 설정 아이콘을 표시합니다.</description>
+				<description xml:lang="en">Display Layout setting icon in navbar.</description>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">3. 사이드바</title>
+			<title xml:lang="en">3. Sidebar</title>
+			<var name="sb_desc">
+				<title xml:lang="ko">사이드바</title>
+				<title xml:lang="en">Sidebar</title>
+				<description xml:lang="ko">형태를 '사이드바 + 컨텐트' 혹은 '컨텐트 + 사이드바'로 설정하셔야지 사용이 가능합니다.</description>
+				<description xml:lang="en">You must setting 'Frame' to 'Sidebar + Content' or 'Content + sidebar', if you want view sidebar.</description>
+			</var>
+
+			<var name="sb_width" type="select">
+				<title xml:lang="ko">사이드바 너비</title>
+				<title xml:lang="en">Sidebar width</title>
+				<description xml:lang="ko">사이드바의 너비를 조정합니다. (span2~span4)</description>
+				<description xml:lang="en"></description>
+				<options value="2">
+					<title xml:lang="ko">span2 (기본)</title>
+					<title xml:lang="en">span2 (default)</title>
+				</options>
+				<options value="3">
+					<title xml:lang="ko">span3</title>
+					<title xml:lang="en">span3</title>
+				</options>
+				<options value="4">
+					<title xml:lang="ko">span4</title>
+					<title xml:lang="en">span4</title>
+				</options>	
+			</var>
+			<var name="sb_recent_doc" type="select">
+				<title xml:lang="ko">최신 글 출력</title>
+				<title xml:lang="en">Recent Posts</title>
+				<description xml:lang="ko">사이드바에 최신 글을 출력합니다.</description>
+				<description xml:lang="en">Show Recent post at sidebar.</description>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Display</title>
+				</options>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">Not display</title>
+				</options>
+			</var>
+			<var name="sb_recent_doc_count" type="text">
+				<title xml:lang="ko">최신 글 출력 갯수</title>
+				<title xml:lang="en">Recent Posts list count</title>
+				<description xml:lang="ko">최신 글 리스트를 출력할 갯수를 정해주세요. (기본 5개)</description>
+				<description xml:lang="en"></description>
+			</var>
+			<var name="sb_recent_doc_module" type="text">
+				<title xml:lang="ko">최신 글 출력 모듈 번호</title>
+				<title xml:lang="en">Recent Posts module</title>
+				<description xml:lang="ko">최신 글을 출력할 모듈 번호를 입력합니다. 비워둘 경우 모든 게시물이 출력됩니다. (쉼표로 구분합니다.)</description>
+				<description xml:lang="en"></description>
+			</var>
+			<var name="sb_recent_comm" type="select">
+				<title xml:lang="ko">최신 댓글 출력</title>
+				<title xml:lang="en">Recent Comments</title>
+				<description xml:lang="ko">사이드바에 최신 댓글을 출력합니다.</description>
+				<description xml:lang="en">Show Recent Comments at sidebar.</description>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+			</var>
+			<var name="sb_recent_comm_module" type="text">
+				<title xml:lang="ko">최신 댓글 출력 모듈 번호</title>
+				<title xml:lang="en">Recent Comment module</title>
+				<description xml:lang="ko">최신 댓글을 출력할 모듈 번호를 입력합니다. 비워둘 경우 모든 댓글이 출력됩니다. (쉼표로 구분합니다.)</description>
+				<description xml:lang="en"></description>
+			</var>
+			<var name="sb_recent_comm_count" type="text">
+				<title xml:lang="ko">최신 댓글 출력 갯수</title>
+				<title xml:lang="en">Recent Comment list count</title>
+				<description xml:lang="ko">최신 댓글 리스트를 출력할 갯수를 정해주세요. (기본 5개)</description>
+				<description xml:lang="en"></description>
+			</var>
+
+			<var name="sb_category" type="select">
+				<title xml:lang="ko">카테고리 출력</title>
+				<title xml:lang="en">Category</title>
+				<description xml:lang="ko">게시판 등에서 카테고리가 존재할 경우 사이드바에 표시합니다.</description>
+				<description xml:lang="en">If category exists, show at sidebar.</description>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Display</title>
+				</options>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">Not display</title>
+				</options>
+			</var>
+
+			<var name="sb_header_icon" type="select">
+				<title xml:lang="ko">제목 아이콘</title>
+				<title xml:lang="en">Title icon</title>
+				<description xml:lang="ko">Recent Post 등 앞에 아이콘을 넣습니다.</description>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+			</var>
+
+			<var name="sb1" type="textarea">
+				<title xml:lang="ko">사용자 지정 위젯 1</title>
+				<title xml:lang="en">Custom widget 1</title>
+				<description xml:lang="ko">사이드바 나올 사용자 지정 위젯을 넣으세요. (HTML 사용 가능) (더 많은 위젯을 이용하고 싶으실 경우, custom_sidebar_top.html 혹은 custom_sidebar_bottom.html 를 사용하세요.)</description>
+				<description xml:lang="en">Put custom widget in the sidebar. (HTML available)</description>
+			</var>
+			<var name="sb2" type="textarea">
+				<title xml:lang="ko">사용자 지정 위젯 2</title>
+				<title xml:lang="en">Custom widget 2</title>
+			</var>
+			<var name="sb3" type="textarea">
+				<title xml:lang="ko">사용자 지정 위젯 3</title>
+				<title xml:lang="en">Custom widget 3</title>
+			</var>
+		</group>
+
+		<group>
+			<title xml:lang="ko">4. 슬라이더</title>
+			<title xml:lang="en">4. Carousel</title>
+			<var name="carousel_use" type="select">
+				<title xml:lang="ko">슬라이더 사용</title>
+				<title xml:lang="en">Use Carousel</title>
+				<options value="no">
+					<title xml:lang="ko">사용안함</title>
+					<title xml:lang="en">Not use</title>
+				</options>
+				<options value="yes">
+					<title xml:lang="ko">사용</title>
+					<title xml:lang="en">Use</title>
+				</options>
+				<description xml:lang="ko">슬라이더를 더 많이 추가 하시고 싶으시면, 커스텀의 custom_carousel_replace.html 기능을 사용하세요.</description>
+			</var>
+			<var name="carousel_mobile_use" type="select">
+				<title xml:lang="ko">모바일 뷰에서 표시</title>
+				<title xml:lang="en">Mobile</title>
+				<description xml:lang="ko">모바일 뷰에서 슬라이더를 표시할까요?</description>
+				<description xml:lang="en">Display carousel in mobile view</description>
+				<options value="no">
+					<title xml:lang="ko">표시 안함</title>
+					<title xml:lang="en">No</title>
+				</options>
+				<options value="yes">
+					<title xml:lang="ko">표시</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+			</var>
+			<var name="carousel_animate" type="select">
+				<title xml:lang="ko">슬라이더 효과</title>
+				<title xml:lang="en">Slider effect</title>
+				<description xml:lang="ko">슬라이더가 넘어갈 때의 효과를 정합니다. (IE 8 이하 제외)</description>
+				<options value="slide">
+					<title xml:lang="ko">슬라이드 효과</title>
+					<title xml:lang="en">Sliding effect</title>
+				</options>
+				<options value="vertical">
+					<title xml:lang="ko">세로 슬라이드 효과</title>
+					<title xml:lang="en">Vertical sliding effect</title>
+				</options>
+				<options value="fade">
+					<title xml:lang="ko">페이드 효과</title>
+					<title xml:lang="en">Fade effect</title>
+				</options>
+			</var>
+			<var name="carousel_interval" type="text">
+				<title xml:lang="ko">슬라이더 간격 시간</title>
+				<title xml:lang="en">Carousel interval time</title>
+				<description xml:lang="ko">슬라이더 이미지가 이동하는 간격 시간을 입력하세요. (기본 : 5000 (5초)) (1초 = 1000)</description>
+				<description xml:lang="en">* Default : 5000 / 1000 = 1 second</description>
+			</var>
+			<var name="carousel_place" type="text">
+				<title xml:lang="ko">슬라이더 표시 모듈</title>
+				<title xml:lang="en">Carousel output modules</title>
+				<description xml:lang="ko">
+				메인 페이지 같이, 슬라이더를 출력을 원하는 모듈 명을 적어주세요.
+				입력하지 않을 경우	모든 곳에서 표시됩니다.
+				구분은 "," (쉼표)로 구분합니다. 
+				예) home, carousel_page
+				</description>
+				<description xml:lang="en">
+				Like the main page, write down module id to output only 'Carousel'.
+				If you don't write, carousel displays always.
+				Divisions are separated by a comma.
+				ex) home, carousel
+				</description>
+			</var>
+			
+			<var name="stemplate_carousel_max_height" type="text">
+				<title xml:lang="ko">슬라이더 높이</title>
+				<title xml:lang="en">Slider Max height</title>
+				<description xml:lang="ko">'슬라이더 강조' 템플릿을 사용할 경우, 이미지의 최대 높이를 정하세요. 적지 않으시면 이미지의 기본 높이로 지정됩니다. (px는 생략합니다.)</description>
+				<description xml:lang="en">If you use 'Carousel Highlight' template, input max height of image. (Omit 'px')</description>
+			</var>
+			<var name="carousel_c1_img" type="image">
+				<title xml:lang="ko">슬라이더 1 이미지</title>
+				<title xml:lang="en">Slider 1 Image</title>
+				<description xml:lang="ko">슬라이더 첫번째 이미지를 넣어주세요. 모든 슬라이더 이미지의 크기는 같게 해주세요. 이미지 크기는 넓을 수록 좋습니다. (너비 : 100%)</description>
+				<description xml:lang="en">Enter image of the slider. All slider image size must equal. (Auto width)</description>
+			</var>
+			<var name="carousel_c1_url" type="text">
+				<title xml:lang="ko">슬라이더 1 URL</title>
+				<title xml:lang="en">Slider 1 URL</title>
+				<description xml:lang="ko">슬라이더 첫번째 이미지를 클릭하면 이동할 URL를 입력해주세요.</description>
+				<description xml:lang="en">Enter URL when clicked the slider of first image.</description>
+			</var>
+			<var name="carousel_c1_text" type="text">
+				<title xml:lang="ko">슬라이더 1 제목</title>
+				<title xml:lang="en">Slider 1 title</title>
+				<description xml:lang="ko">슬라이더 첫번째 이미지 하단에 나올 제목을 입력하세요.</description>
+				<description xml:lang="en">Enter title of the slider at the bottom of the first image.</description>
+			</var>
+			<var name="carousel_c1_content" type="textarea">
+				<title xml:lang="ko">슬라이더 1 설명</title>
+				<title xml:lang="en">Slider 1 description</title>
+				<description xml:lang="ko">슬라이더 첫번째 이미지 하단에 나올 설명을 입력하세요. (br 태그 사용 가능)</description>
+				<description xml:lang="en">Enter description of the slider at the bottom of the first image.(br tags available)</description>
+			</var>
+			<var name="carousel_c2_img" type="image">
+				<title xml:lang="ko">슬라이더 2 이미지</title>
+				<title xml:lang="en">Slider 2 Image</title>
+			</var>
+			<var name="carousel_c2_url" type="text">
+				<title xml:lang="ko">슬라이더 2 URL</title>
+				<title xml:lang="en">Slider 2 URL</title>
+			</var>
+			<var name="carousel_c2_text" type="text">
+				<title xml:lang="ko">슬라이더 2 제목</title>
+				<title xml:lang="en">Slider 2 title</title>
+			</var>
+			<var name="carousel_c2_content" type="textarea">
+				<title xml:lang="ko">슬라이더 2 설명</title>
+				<title xml:lang="en">Slider 2 description</title>
+			</var>
+			
+			<var name="carousel_c3_img" type="image">
+				<title xml:lang="ko">슬라이더 3 이미지</title>
+				<title xml:lang="en">Slider 2 Image</title>
+			</var>
+			<var name="carousel_c3_url" type="text">
+				<title xml:lang="ko">슬라이더 3 URL</title>
+				<title xml:lang="en">Slider 3 URL</title>
+			</var>
+			<var name="carousel_c3_text" type="text">
+				<title xml:lang="ko">슬라이더 3 제목</title>
+				<title xml:lang="en">Slider 3 title</title>
+			</var>
+			<var name="carousel_c3_content" type="textarea">
+				<title xml:lang="ko">슬라이더 3 설명</title>
+				<title xml:lang="en">Slider 3 description</title>
+			</var>
+			
+			<var name="carousel_c4_img" type="image">
+				<title xml:lang="ko">슬라이더 4 이미지</title>
+				<title xml:lang="en">Slider 4 Image</title>
+			</var>
+			<var name="carousel_c4_url" type="text">
+				<title xml:lang="ko">슬라이더 4 URL</title>
+				<title xml:lang="en">Slider 4 URL</title>
+			</var>
+			<var name="carousel_c4_text" type="text">
+				<title xml:lang="ko">슬라이더 4 제목</title>
+				<title xml:lang="en">Slider 4 title</title>
+			</var>
+			<var name="carousel_c4_content" type="textarea">
+				<title xml:lang="ko">슬라이더 4 설명</title>
+				<title xml:lang="en">Slider 4 description</title>
+			</var>
+			
+			<var name="carousel_c5_img" type="image">
+				<title xml:lang="ko">슬라이더 5 이미지</title>
+				<title xml:lang="en">Slider 5 Image</title>
+			</var>
+			<var name="carousel_c5_url" type="text">
+				<title xml:lang="ko">슬라이더 5 URL</title>
+				<title xml:lang="en">Slider 5 URL</title>
+			</var>
+			<var name="carousel_c5_text" type="text">
+				<title xml:lang="ko">슬라이더 5 제목</title>
+				<title xml:lang="en">Slider 5 title</title>
+			</var>
+			<var name="carousel_c5_content" type="textarea">
+				<title xml:lang="ko">슬라이더 5 설명</title>
+				<title xml:lang="en">Slider 5 description</title>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">5. 푸터</title>
+			<title xml:lang="en">5. Footer</title>
+			<var name="footer_depth" type="select">
+				<title xml:lang="ko">푸터 메뉴 표시방법</title>
+				<title xml:lang="en">Kind of display footer menu</title>
+				<description xml:lang="ko">3차 메뉴는 사이트맵 형식으로 보여주며,  1차 메뉴는 간단한 메뉴처럼 보여줍니다.</description>
+				<options value="depth3">
+					<title xml:lang="ko">3차 메뉴</title>
+					<title xml:lang="en">3rd menu</title>
+				</options>
+				<options value="depth1">
+					<title xml:lang="ko">1차 메뉴</title>
+					<title xml:lang="en">1st menu</title>
+				</options>
+			</var>
+			<var name="footer_family_site" type="select">
+				<title xml:lang="ko">Family Site</title>
+				<title xml:lang="en">Family Site</title>
+				<description xml:lang="ko">Family Site 메뉴를 표시하시겠습니까? Family 사이트는 아래의 메뉴 - Family Site에서 변경 할 수 있습니다.</description>
+				<description xml:lang="en">Use family site? Change from Menu - Family Site below.</description>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+			</var>
+			<var name="footer_lang" type="select">
+				<title xml:lang="ko">언어 변경 표시</title>
+				<title xml:lang="en">Show language select</title>
+				<description xml:lang="ko">푸터에 언어 변경 버튼을 보여줍니다.</description>
+				<description xml:lang="en">Show langauges select button at footer</description>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+			</var>
+			<var name="copyright" type="textarea">
+				<title xml:lang="ko">저작권 표시</title>
+				<title xml:lang="en">Copyright</title>
+				<description xml:lang="ko">하단 메뉴 아래에 나올 저작권 내용 등을 적어주세요. (HTML 사용 가능)</description>
+				<description xml:lang="en">Write copyright on the footer.</description>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">6. 기타</title>
+			<title xml:lang="en">6. Other</title>
+			<var name="default_bg_img" type="select">
+				<title xml:lang="ko">패턴 이미지</title>
+				<title xml:lang="en">Pattern image</title>
+				<description xml:lang="ko">by Subtle Patterns (http://subtlepatterns.com)</description>
+				<description xml:lang="en">by Subtle Patterns (http://subtlepatterns.com)</description>
+				<options value="noise_lines">
+					<title xml:lang="ko">Noise Lines</title>
+					<title xml:lang="en">Noise Lines</title>
+				</options>
+				<options value="none">
+					<title xml:lang="ko">없음</title>
+					<title xml:lang="en">None</title>
+				</options>
+				<options value="grid">
+					<title xml:lang="ko">Grid</title>
+					<title xml:lang="en">Grid</title>
+				</options>
+				<options value="noisy_grid">
+					<title xml:lang="ko">Noisy Grid</title>
+					<title xml:lang="en">Noisy Grid</title>
+				</options>
+				<options value="straws">
+					<title xml:lang="ko">Straws</title>
+					<title xml:lang="en">Straws</title>
+				</options>
+				<options value="skelatal_weave">
+					<title xml:lang="ko">Skeletal Weave</title>
+					<title xml:lang="en">Skeletal Weave</title>
+				</options>
+			</var>
+			<var name="background_img" type="image">
+				<title xml:lang="ko">배경 이미지 직접 등록</title>
+				<title xml:lang="en">Background Image</title>
+				<description xml:lang="ko">기본 배경이 "없음"으로 되어있어야합니다.</description>
+			</var>
+			<var name="background_color" type="text">
+				<title xml:lang="ko">배경 색</title>
+				<title xml:lang="en">Background color</title>
+				<description xml:lang="ko">레이아웃의 배경 색을 정해주세요. 예) #eeeeee</description>
+				<description xml:lang="en">ex) #eeeeee</description>
+			</var>
+			<var name="bg_fixed" type="select">
+				<title xml:lang="ko">배경 고정</title>
+				<title xml:lang="en">Background Attachment fixed</title>
+				<description xml:lang="ko">배경 이미지를 스크롤을 내려도 고정시킵니다. (background-attachment:fixed)</description>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+			</var>
+			<var name="use_totop" type="select">
+				<title xml:lang="ko">To Top</title>
+				<title xml:lang="en">To Top</title>
+				<description xml:lang="ko">상단으로 올라가는 To Top 버튼을 사용합니다.</description>
+				<options value="yes">
+					<title xml:lang="ko">예 - 검정색</title>
+					<title xml:lang="en">Yes - Black</title>
+				</options>
+				<options value="yes_white">
+					<title xml:lang="ko">예 - 흰색</title>
+					<title xml:lang="en">Yes - White</title>
+				</options>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+			</var>
+			<var name="use_main_bc" type="select">
+				<title xml:lang="ko">빵메뉴</title>
+				<title xml:lang="en">Breadcrumb</title>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+			</var>
+			<var name="fontface" type="select">
+				<title xml:lang="ko">웹 폰트</title>
+				<title xml:lang="en">Webfont</title>
+				<description xml:lang="ko">fontface.kr에서 지원하는 웹 폰트를 사용할까요? (추천 : 나눔고딕) (s모바일에는 불러오지 않습니다.)</description>
+				<options value="no">
+					<title xml:lang="ko">사용 안함</title>
+					<title xml:lang="en">Don't use</title>
+				</options>
+				<options value="NanumGothic">
+					<title xml:lang="ko">나눔고딕 (추천)</title>
+					<title xml:lang="en">Nanum Gothic</title>
+				</options>
+				<options value="NanumGothicBold">
+					<title xml:lang="ko">나눔고딕 (굵게)</title>
+					<title xml:lang="en">Nanum Gothic (Bold)</title>
+				</options>
+				<options value="NanumMyeongjo">
+					<title xml:lang="ko">나눔명조</title>
+					<title xml:lang="en">Nanum Myeonjo</title>
+				</options>
+				<options value="NanumMyeongjoBold">
+					<title xml:lang="ko">나눔명조 (굵게)</title>
+					<title xml:lang="en">Nanum Myeonjo (Bold)</title>
+				</options>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">7. 고급</title>
+			<title xml:lang="en">7. Advance</title>
+			<var name="analytics_iframe" type="select">
+				<title xml:lang="ko">사용 정보 수집</title>
+				<description xml:lang="ko">
+					사용 정보 수집 : 통계 등을 위한 참고 자료로 사용됩니다. 그 외의 용도로는 사용되지 않습니다.
+					수집 내용 : The Bootstrap 버전, XE 버전, PHP 버전, 도메인
+				</description>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+			</var>
+			<var name="pretty_print" type="select">
+				<title xml:lang="ko">Google code prettify</title>
+				<title xml:lang="en">Google code prettify</title>
+				<description xml:lang="ko">Google Pretty Print (코드 강조) 기능을 사용합니다.</description>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+			</var>
+		</group>
+		<group>
+			<title xml:lang="ko">8. 커스텀</title>
+			<title xml:lang="en">8. Custom</title>
+			<var name="custom_desc">
+			<title xml:lang="ko">커스텀</title>
+			<title xml:lang="en">Custom</title>
+				<description xml:lang="ko">커스텀 내용을 추가하시려면 원하는 것을 '예'를 선택한 후 'layouts/the_bootstrap/custom/???' 파일을 만들어 사용하시면 됩니다.</description>
+			</var>
+			<var name="custom_style_css" type="select">
+				<title xml:lang="ko">custom_style.css</title>
+				<title xml:lang="en">custom_style.css</title>
+				<description xml:lang="ko">커스텀 css를 적용합니다.</description>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+			</var>
+			
+			<var name="custom_js_js" type="select">
+				<title xml:lang="ko">custom_js.js</title>
+				<title xml:lang="en">custom_js.js</title>
+				<description xml:lang="ko">커스텀 자바스크립트를 적용합니다.</description>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+			</var>
+
+			<var name="custom_top_html" type="select">
+				<title xml:lang="ko">custom_top.html</title>
+				<title xml:lang="en">custom_top.html</title>
+				<description xml:lang="ko">페이지 상단</description>
+				<description xml:lang="en">Page top</description>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+			</var>
+			<var name="custom_bottom_html" type="select">
+				<title xml:lang="ko">custom_bottom.html</title>
+				<title xml:lang="en">custom_bottom.html</title>
+				<description xml:lang="ko">페이지 하단</description>
+				<description xml:lang="en">Page bottom</description>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+			</var>
+			<var name="custom_content_top_html" type="select">
+				<title xml:lang="ko">custom_content_top.html</title>
+				<title xml:lang="en">custom_content_top.html</title>
+				<description xml:lang="ko">컨텐츠 상단</description>
+				<description xml:lang="en">Content top</description>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+			</var>
+			<var name="custom_content_bottom_html" type="select">
+				<title xml:lang="ko">custom_content_bottom.html</title>
+				<title xml:lang="en">custom_content_bottom.html</title>
+				<description xml:lang="ko">컨텐츠 하단</description>
+				<description xml:lang="en">Content bottom</description>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+			</var>
+			<var name="custom_sidebar_top" type="select">
+				<title xml:lang="ko">custom_sidebar_top.html</title>
+				<title xml:lang="en">custom_sidebar_top.html</title>
+				<description xml:lang="ko">사이드바 상단 (Recent Post 상단/더 많은 위젯 추가)</description>
+				<description xml:lang="en">Sidebar top (ex : more widgets)</description>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+			</var>
+			<var name="custom_sidebar_bottom" type="select">
+				<title xml:lang="ko">custom_sidebar_bottom.html</title>
+				<title xml:lang="en">custom_sidebar_bottom.html</title>
+				<description xml:lang="ko">사이드바 하단 (더 많은 위젯 추가)</description>
+				<description xml:lang="en">Sidebar bottom (ex : more widgets)</description>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+			</var>
+			<var name="custom_carousel_replace" type="select">
+				<title xml:lang="ko">custom_carousel_replace.html</title>
+				<title xml:lang="en">custom_carousel_replace.html</title>
+				<description xml:lang="ko">* 주의 : 기본 슬라이더가 custom_carousel_replace.html 파일로 변경됩니다.</description>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+			</var>
+			<var name="custom_footer_replace" type="select">
+				<title xml:lang="ko">custom_footer_replace.html</title>
+				<title xml:lang="en">custom_footer_replace.html</title>
+				<description xml:lang="ko">* 주의 : 기본 푸터가 custom_footer_replace.html 파일로 변경됩니다.</description>
+				<options value="no">
+					<title xml:lang="ko">아니요</title>
+					<title xml:lang="en">No</title>
+				</options>
+				<options value="yes">
+					<title xml:lang="ko">예</title>
+					<title xml:lang="en">Yes</title>
+				</options>
+			</var>
+
+			<!--<var name="checkbox_test" type="checkbox">
+				<title xml:lang="ko">커스텀</title>
+				<title xml:lang="en">Custom</title>
+				<description xml:lang="ko">커스텀 내용을 추가하시려면 원하는 것에 체크 한 후 'themes/tb/layouts/the_bootstrap/custom/???' 넣으시면 됩니다. XE 문법을 쓸 경우 추천합니다.</description>
+				<description xml:lang="en"></description>
+				<options value="custom_style">
+					<title xml:lang="ko">custom_style.css (CSS)</title>
+				</options>
+				<options value="custom_js">
+					<title xml:lang="ko">custom_js.js (자바스크립트)</title>
+				</options>
+				<options value="custom_top">
+					<title xml:lang="ko">custom_top.html (페이지 상단)</title>
+				</options>
+				<options value="custom_bottom">
+					<title xml:lang="ko">custom_bottom.html (페이지 하단)</title>
+				</options>
+				<options value="custom_sidebar_top">
+					<title xml:lang="ko">custom_sidebar_top.html (사이드바 상단/더 많은 위젯 추가)</title>
+				</options>
+				<options value="custom_sidebar_bottom">
+					<title xml:lang="ko">custom_sidebar_bottom.html (사이드바 하단/더 많은 위젯 추가)</title>
+				</options>
+			</var>-->
+		</group>
+	</extra_vars>
+    <menus>
+        <menu name="main_menu" maxdepth="2" default="true">
+            <title xml:lang="ko">메인 메뉴</title>
+            <title xml:lang="en">Main Menu</title>
+        </menu>
+        <menu name="footer_menu" maxdepth="1" default="false">
+            <title xml:lang="ko">하단 사이트맵 메뉴</title>
+            <title xml:lang="en">Footer Menu</title>
+        </menu>
+        <menu name="family_site" maxdepth="1" default="false">
+            <title xml:lang="ko">Family Site</title>
+            <title xml:lang="en">Family Site</title>
+        </menu>
+    </menus>
+</layout>>
+</layout>

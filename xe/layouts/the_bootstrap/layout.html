@@ -1,0 +1,176 @@
+<include target="setting.html" />
+
+<block cond="$li->site_template=='carousel'">
+	<div class="navbar-wrapper">
+		<div class="container">
+			<include target="navbar.html" />
+		</div>
+	</div>
+	<div class="hidden-phone hidden-tablet"|cond="$li->carousel_mobile_use=='no'" cond="($li->carousel_mobile_use=='no' && $is_not_mv) || $li->carousel_mobile_use=='yes'">
+		<!--@if($li->carousel_place)--><include target="main_carousel.html" cond="in_array($mid,$carousel_place)" />
+		<!--@else--><include target="main_carousel.html" /><!--@end-->
+	</div>
+</block>
+<include target="navbar.html" cond="$li->site_template=='default'" />
+<block cond="$li->site_template=='usual1'">
+	<include target="header.html" />
+	<include target="navbar.html" />
+</block>
+<div class="container">
+	<include target="navbar.html" cond="$li->site_template=='usual2'" />
+		<div class="content">
+			<include target="custom/custom_top.html" cond="$li->custom_top_html=='yes'" />
+			<!--@if($li->frame!='fixed')--><div class="row-fluid clear" id="container_row"><!--@end-->
+				<include target="sidebar.html" cond="$li->frame=='fluid' && $is_not_mv"/>
+				<!--// content -->
+				<div class="<!--@if($li->frame!='fixed')-->span{12-$li->sb_width} <!--@end-->content" id="content">
+					<include target="custom/custom_content_top.html" cond="$li->custom_content_top=='yes'" />
+					<!--// breadcrumb -->
+					<div class="breadcrumb main_bc hidden-phone hidden-tablet" cond="$li->use_main_bc=='yes'">
+						<div class="pull-left">
+							<a href="{getSiteUrl()}"><i class="icon-sitemap"></i></a>
+							<ul loop="$main_menu->list=>$key1,$val1" cond="$val1['selected']">
+								<li><a href="{$val1['href']}">{$val1['link']}</a> <span class="divider" cond="$val1['list']">/</span></li>
+								<block loop="$val1['list']=>$key2,$val2" cond="$val2['selected']">
+									<li><a href="{$val2['href']}">{$val2['link']}</a><span class="divider" cond="$val2['list']">/</span></li>
+									<block loop="$val2['list']=>$key3,$val3" cond="$val3['selected']">
+										<li><a href="{$val3['href']}">{$val3['link']}</a></li>
+									</block>
+								</block>
+							</ul>
+						</div>
+						<ul class="pull-right" cond="$grant->manager">
+							<li><a href="{getUrl('','module','admin')}" target="_blank"><i class="icon-cog"></i> {$lang->cmd_management}</a>
+							<block cond="$li->xe_version!='xe17'">
+								<span class="divider">/</span></li>
+								<li><a href="{getUrl('act','dispAdminTheme')}" target="_blank"><i class="icon-magic"></i> {$lang->tb_theme} {$lang->cmd_setup}</a></li>
+							</block>
+						</ul>
+						<div class="clearfix"></div>
+					</div><!--// .breadcrumb end -->
+					<!--@if($li->site_template!='carousel' && $li->carousel_use!='no')-->
+						<block cond="($li->carousel_mobile_use=='no' && $is_not_mv )|| $li->carousel_mobile_use=='yes'">
+							<!--@if($li->carousel_place)--><include target="main_carousel.html" cond="in_array($mid,$carousel_place)" />
+							<!--@else--><include target="main_carousel.html" /><!--@end-->
+						</block>
+					<!--@end-->
+					<article><div>
+						<div cond="$XE_VALIDATOR_MESSAGE" class="alert <!--@if("{$XE_VALIDATOR_MESSAGE_TYPE}"=="info")-->alert-info<!--@elseif("{$XE_VALIDATOR_MESSAGE_TYPE}"=="error")-->alert-error<!--@end-->">
+							<a class="close" data-dismiss="alert">&times;</a>
+							{$XE_VALIDATOR_MESSAGE}
+						</div>
+						{$content}
+						<div class="clearfix"></div>
+					</div></article>
+					<include target="custom/custom_content_bottom.html" cond="$li->custom_content_bottom=='yes'" />
+				</div>
+				<include target="sidebar.html" cond="$li->frame=='fluid2'"/>
+			<!--@if($li->frame!='fixed')--></div><!--@end-->
+			<include target="custom/custom_bottom.html" cond="$li->custom_bottom_html=='yes'" />
+		</div><!--// .content end -->
+</div><!--// .container end -->
+
+<!--// Footer -->
+<include target="custom/custom_footer_replace.html" cond="$li->custom_footer_replace=='yes'" />
+<footer class="{$li->footer_depth}" id="footer" cond="$li->custom_footer_replace!='yes'">
+	<div class="container">
+		<button type="button" class="close hidden-phone hidden-tablet" id="footer-toggle-btn" cond="$li->footer_depth=='depth3'"><i class="icon-chevron-up tooltip-top" data-title="{$lang->tb_more}" data-trigger="manual"></i></button>
+		<div class="fr pull-right ac">
+			<ul class="nav nav-list">
+				<block cond="$li->responsive!='no'">
+					<li cond="Mobile::isMobileCheckByAgent() && !$_COOKIE['fakeM']" class="fr">
+						<a id="pc_view"><i class="icon-resize-full"></i> PC View</a>
+					</li>
+					<li cond="Mobile::isMobileCheckByAgent() && $_COOKIE['fakeM']" class="fr">
+						<a id="mobile_view"><i class="icon-resize-small"></i> MobileView </a>
+					</li>
+				</block>
+				<li cond="$li->footer_family_site=='yes' && $family_site->list">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-bookmark"></i> FamilySite</a>
+					<ul class="nav nav-list nav-sub">
+						<block loop="$family_site->list=>$key1,$val1" >
+							<li><a href="{$val1['href']}" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['link']}</a></li>
+						</block>
+					</ul>
+				</li>
+				<li cond="$li->footer_lang=='yes'">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-globe"></i> Language</a>
+					<ul class="nav nav-list nav-sub">
+						<li class="active"><a href="#" onclick="return false">{$lang_supported[$lang_type]}</a></li>
+						<!--@foreach($lang_supported as $key => $val)--><!--@if($key!= $lang_type)-->
+						<li><a href="#" onclick="doChangeLangType('{$key}');return false;">{$val}</a></li>
+						<!--@end--><!--@end-->
+		   			</ul> 
+				</li>
+				<li>
+					<a id="about_this_layout_bottom" href="http://www.wincomi.com" target="_blank"><i class=" icon-exclamation-sign"></i> Layout by Wincomi</a>
+				</li>
+			</ul>
+		</div>
+		<div class="fl pull-left hidden-phone" cond="$is_not_mv">
+			<ul class="nav nav-list ac">
+				<block loop="$footer_menu->list=>$key1,$val1">
+					<!--@if($val1['link']!="||||")-->
+					<li class="active"|cond="$val1['selected']">
+						<a href="{$val1['href']}" target="_blank"|cond="$val1['open_window']=='Y'">{$val1['link']}</a>
+						<ul cond="$val1['list'] && $li->footer_depth=='depth3'" class="nav nav-list nav-sub">
+							<block loop="$val1['list']=>$key2,$val2" cond="$val2['link']">
+								<!--@if($val2['link']!="----")-->
+								<li class="active"|cond="$val2['selected']">
+									<a href="{$val2['href']}" target="_blank"|cond="$val2['open_window']=='Y'">{$val2['link']}</a>
+									<ul cond="$val2['list']" class="nav nav-list nav-sub">
+										<block loop="$val2['list']=>$key3,$val3" cond="$val3['link']">
+											<li class="active"|cond="$val3['selected']" >
+												<!--@if($val3['link']!="----")-->
+												<a href="{$val3['href']}" target="_blank"|cond="$val3['open_window']=='Y'">{$val3['link']}</a>
+												<ul cond="$val3['list']">
+													<li loop="$val3['list']=>$key4,$val4" class="active"|cond="$val4['selected']" cond="$val4['link']"><a href="{$val4['href']}" target="_blank"|cond="$val4['open_window']=='Y'">{$val4['link']}</a></li>
+												</ul>
+												<!--@else-->
+													<li class="divider"></li>
+												<!--@end-->
+											</li>
+										</block>					
+									</ul>
+								</li>
+								<!--@else-->
+									<li class="divider"></li>
+								<!--@end-->
+							</block>
+						</ul>
+					</li>
+					<!--@end-->
+				</block>
+			</ul>
+		</div>
+		<div class="copyright" cond="$li->copyright">{$li->copyright}</div>
+	</div>
+	<iframe cond="$grant->manager && $li->analytics_iframe!='no'" src="{$_analytics_url}" id="analytics-iframe" style="margin:0;border:0;width:0;height:0"></iframe>
+</footer>
+
+<!--// Login Modal -->
+<div class="modal modal-mini <!--@if(!Mobile::isMobileCheckByAgent())-->fade <!--@end-->hide" id="loginForm" cond="!$is_logged">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h4>{$lang->cmd_login}</h4>
+	</div>
+	<form action="./" method="post" ruleset="@login" style="margin:0" class="clear">
+		<div class="modal-body">
+			{@$member_config=MemberModel::getMemberConfig();$identifierForm->name=$member_config->identifier;}
+			<input type="hidden" name="act" value="procMemberLogin" />
+			<input type="hidden" name="success_return_url" value="{getRequestUriByServerEnviroment()}" />
+			<input type="<!--@if($identifierForm->name=='email_address')-->email<!--@else-->text<!--@end-->" name="user_id" id="uid" value="" placeholder="<!--@if($identifierForm->name=='email_address')-->{$lang->email}<!--@else-->{$lang->user_id}<!--@end-->" />
+			<input type="password" name="password" id="upw" value="" placeholder="{$lang->password}" />
+			<br />
+			<input type="checkbox" name="keep_signed" id="keepid_opt" value="Y" onclick="if(this.checked) return confirm('{$lang->about_keep_signed}');" />
+			<label for="keepid_opt" class="help-inline">{$lang->keep_signed}</label>
+		</div>
+		<div class="modal-footer">
+			<a href="{getUrl('act','dispMemberSignUpForm')}" class="btn">{$lang->cmd_signup}</a>
+			<input type="submit" class="btn btn-primary" value="{$lang->cmd_login}" />
+		</div>
+	</form>
+</div>
+<div cond="$is_not_mv && $li->use_totop!='no'" id="toTop" class="tooltip-left" data-title="Top"><i class="icon-caret-up"></i></div>
+
+<!-- <!--@if($_program_name=='the_bootstrap_premium')-->The Bootstrap Premium<!--@else-->The Bootstrap<!--@end--> Layout ver {$_program_version} by http://www.wincomi.com -->

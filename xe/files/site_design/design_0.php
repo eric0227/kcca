@@ -1,0 +1,23 @@
+<?php if(!defined("__XE__")) exit();
+$designInfo = new stdClass();
+$designInfo->layout_srl = 64; 
+$designInfo->mlayout_srl = 65;
+$designInfo->module = new stdClass();
+$designInfo->module->page = new stdClass();
+$designInfo->module->page->skin = 'default';
+$designInfo->module->page->mskin = 'default';
+$designInfo->module->communication = new stdClass();
+$designInfo->module->communication->mskin = 'default';
+$designInfo->module->editor = new stdClass();
+$designInfo->module->editor->skin = 'dreditor';
+$designInfo->module->integration_search = new stdClass();
+$designInfo->module->integration_search->skin = 'default';
+$designInfo->module->member = new stdClass();
+$designInfo->module->member->mskin = 'default';
+$designInfo->module->message = new stdClass();
+$designInfo->module->message->mskin = 'default';
+$designInfo->module->poll = new stdClass();
+$designInfo->module->poll->skin = 'default';
+$designInfo->module->board = new stdClass();
+$designInfo->module->board->mskin = 'default';
+ ?>

@@ -1,0 +1,168 @@
+<div id="header-bg"></div>
+<header id="header" class="container">
+	<h1 class="brand">
+		<a href="{$li->index_url}"><!--@if($li->logo_img)--><img src="{$li->logo_img}" alt="{$li->logo_title}" /><!--@else-->{$li->logo_title}<!--@end--></a>
+	</h1>
+	<ul id="top_menu" class="nav nav-pills">
+		<li class="dropdown" cond="$li->use_social_login=='no' && !$is_logged">
+			<a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-user"></i> {$lang->cmd_login} <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li><a href="#loginForm" data-toggle="modal">{$lang->cmd_login}</a></li>
+					<li><a href="{getUrl('act','dispMemberSignUpForm')}">{$lang->cmd_signup}</a></li>
+					<!--//<li class="divider"></li>-->
+					<li><a href="{getUrl('act','dispMemberResendAuthMail')}">{$lang->cmd_resend_auth_mail}</a></li>
+					<li><a href="{getUrl('act','dispMemberFindAccount')}">{$lang->cmd_find_member_account}</a></li>
+				</ul>
+		</li>
+		<li class="dropdown" cond="!$is_logged && $li->use_social_login=='yes'"><a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-user"></i> {$lang->cmd_login} <b class="caret"></b></a>
+			<ul class="dropdown-menu">
+				<li class="nav-header">Social Login</li>
+				<li>
+					<a href="{getSiteUrl($domain,'', 'mid', $mid, 'vid', $vid, 'act', 'dispSocialxeLogin', 'provider', twitter, 'mode', 'socialLogin', 'query', getNotEncodedFullUrl('', 'mid', $mid))}">Twitter</a>
+				</li>
+				<li>
+					<a href="{getSiteUrl($domain,'', 'mid', $mid, 'vid', $vid, 'act', 'dispSocialxeLogin', 'provider', facebook, 'mode', 'socialLogin', 'query', getNotEncodedFullUrl('', 'mid', $mid))}">Facebook</a>
+				</li>
+				<li>
+					<a href="{getSiteUrl($domain,'', 'mid', $mid, 'vid', $vid, 'act', 'dispSocialxeLogin', 'provider', me2day, 'mode', 'socialLogin', 'query', getNotEncodedFullUrl('', 'mid', $mid))}">Me2day</a>
+				</li>
+				<li>
+					<a href="{getSiteUrl($domain,'', 'mid', $mid, 'vid', $vid, 'act', 'dispSocialxeLogin', 'provider', yozm, 'mode', 'socialLogin', 'query', getNotEncodedFullUrl('', 'mid', $mid))}">Yozm</a>
+				</li>
+				<li class="nav-header">Default Login</li>
+				<li><a href="#loginForm" data-toggle="modal">{$lang->cmd_login}</a></li>
+				<li><a href="{getUrl('act','dispMemberSignUpForm')}">{$lang->cmd_signup}</a></li>
+				<li><a href="{getUrl('act','dispMemberResendAuthMail')}">{$lang->cmd_resend_auth_mail}</a></li>
+				<li><a href="{getUrl('act','dispMemberFindAccount')}">{$lang->cmd_find_member_account}</a></li>
+			</ul>
+		</li>
+		<li id="message_list" class="dropdown" cond="$li->message_list=='yes' && $is_logged">
+			<load target="/themes/tb/modules/communication/js/communication.js" />
+			<block cond="$li->message_list=='yes' && $is_logged">
+				{@
+					$oDB = &DB::getInstance();
+					$query = $oDB->_query('select * from xe_member_message where receiver_srl = '.$logged_info->member_srl.' AND message_type = "R" ORDER BY  regdate DESC limit 0, 5');
+					$result = $oDB->_fetch($query);
+					$output = executeQueryArray('addons.message_alarm.getMessageCount', $aobj);
+				}
+				<script cond="count($output->data) && !Mobile::isMobileCheckByAgent()">
+					jQuery(function($){$(".navbar a").hover(function(){$("#message_list>a").tooltip('hide');}).tooltip({placement:"bottom",trigger:"manual",title:"{count($output->data)}{$lang->tb_not_readed_message}"}).delay(500).queue(function(){$("#message_list>a").tooltip('show');}).delay(5000).queue(function(){$("#message_list>a").tooltip('hide');})});
+				</script>
+			</block>
+			<a href="{getURL('act','dispCommunicationMessages')}" data-href="#" data-toggle="dropdown" class="dropdown-toggle">
+				<i class="icon-envelope-alt"></i> {$lang->tb_message} <b class="caret"></b>
+			</a>
+			<!--// MessageBox -->
+			<ul class="dropdown-menu" style="min-width:220px">
+				<li class="nav-header">Message List</li>
+				<!--@if(is_array($result)==true)-->
+					<!--@foreach($result as $key=>$val)-->
+					{@
+						$oMemberModel =& getModel('member');
+						$member_info = $oMemberModel->getMemberInfoByMemberSrl($val->sender_srl);
+					}
+					<li class="readed"|cond="$val->readed=='Y'">
+						<a href="{getURL('act','dispCommunicationMessages','message_srl',$val->message_srl)}" class="popover-left" title="{strip_tags($val->title)}" data-content="{iconv_substr(strip_tags($val->content),0,100,'UTF-8')}" >
+							<!--@if($member_info->profile_image->src)-->
+								<img src="{$member_info->profile_image->src}" class="img-polaroid profile_img" />
+							<!--@else-->
+								<img src="./img/profile.gif" class="img-polaroid profile_img" />
+							<!--@end-->
+							<span class="content">
+								<span class="nickname">
+									{$member_info->nick_name}
+								</span>
+								<span class="title">
+									{strip_tags($val->title)}...
+								</span>
+							</span>
+							<span class="clear" style="display:block"></span>
+							<button type="button" onclick="doSendMessage('{$member_info->member_srl}','{$val->message_srl}');return false;" class="btn btn-mini reply_message"><i class="icon-share-alt"></i> {$lang->cmd_reply_message}</button>	
+							<button type="button" class="btn btn-mini">{$lang->tb_more}</button>
+
+							<span class="clear" style="display:block"></span>
+						</a>
+					</li>
+				<!--@end-->
+				<li class="divider"></li>
+				<li class="more"><a href="{getURL('act','dispCommunicationMessages')}">{$lang->tb_more}</a></li>
+				<!--@else-->
+					{@
+						$oMemberModel =& getModel('member');
+						$member_info = $oMemberModel->getMemberInfoByMemberSrl($result->sender_srl);
+					}
+					<li>
+						<a href="{getURL('act','dispCommunicationMessages','message_srl',$result->message_srl)}" class="popover-left<!--@if($val->readed=='Y')--> readed<!--@end-->" rel="popover" title="{strip_tags($result->title)}" data-content="{substr(strip_tags($result->content),0,100)}" >
+							<!--@if($member_info->profile_image->src)-->
+								<img src="{$member_info->profile_image->src}" class="img-polaroid profile_img" />
+							<!--@else-->
+								<img src="./img/profile.gif" class="img-polaroid profile_img" />
+							<!--@end-->
+							<span class="content">
+								<span class="nickname">
+									{$member_info->nick_name}
+								</span>
+								<span class="title">
+									{strip_tags($result->title)}
+								</span>
+							</span>
+							<span class="clear" style="display:block"></span>
+							<button type="button" onclick="doSendMessage('{$member_info->member_srl}','{$val->message_srl}');return false;" class="btn btn-mini reply_message"><i class="icon-share-alt"></i> {$lang->cmd_reply_message}</button>
+							<button type="button" class="btn btn-mini"><i class="icon-eye-open"></i> {$lang->tb_more}</button>
+							<span class="clear" style="display:block"></span>
+						</a>
+					</li>
+					<li class="divider"></li>
+					<li class="more"><a href="{getURL('act','dispCommunicationMessages')}">{$lang->tb_more}</a></li>
+				<!--@end-->
+			</ul>
+		</li>
+		<li cond="$is_logged" class="dropdown">
+			<a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-user-md"></i> {$logged_info->nick_name} <b class="caret"></b></a>
+			<ul class="dropdown-menu">
+				<li><a href="{getUrl('act','dispMemberLogout')}">{$lang->cmd_logout}</a></li>
+				<li class="nav-header">Member</li>
+				<li class="profile_img" style="padding-bottom:10px">
+					<a href="{getURL('act','dispMemberInfo')}">
+						<!--@if($logged_info->profile_image->src)-->
+						<img src="{$logged_info->profile_image->src}" class="img-polaroid profile_img" />
+						<!--@else-->
+						<img src="./img/profile.gif" class="img-polaroid profile_img" />
+						<!--@end-->
+						<span class="nickname">{$logged_info->nick_name}</span>
+					</a>
+				</li>
+				<li loop="$logged_info->menu_list=>$key, $val"><a href="{getUrl('act',$key,'member_srl','')}">{Context::getLang($val)}</a></li>
+				<li><a href="{getURL('act','dispSocialxeSocialInfo')}" cond="$li->member_menu_list_socialxe=='yes'">{$lang->tb_socialxe_social_info}</a></li>
+				<block cond="$li->member_point=='yes'" >
+					<li class="nav-header">Point</li>
+					<li class="point_statue" style="padding:10px">
+						<img class="zbxe_widget_output" widget="point_status" skin="bootstrap" colorset="layout" />
+					</li>
+				</block>
+				<block cond="$grant->manager">
+					<li class="nav-header">Admin</li>
+					<li><a href="{getUrl('','module','admin')}" target="_blank">{$lang->cmd_management}</a></li>
+					<li><a href="{getUrl('act','dispAdminTheme')}" target="_blank" cond="$li->xe_version!='xe17'">{$lang->tb_theme} {$lang->cmd_setup}</a></li>
+				</block>
+			</ul>
+		</li>
+		<li class="dropdown" cond="$li->top_search=='dropdown'">
+			<a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-search"></i> {$lang->cmd_search} <b class="caret"></b></a>
+			<div class="dropdown-menu" style="left:auto;right:0;padding:10px" id="top_search">
+				<form action="{getUrl()}" method="get" data-provide="typeahead" data-times="5" data-source="['test','test1']" style="margin-bottom:0" >
+					<script type="text/javascript" cond="!$li->top_search_typeahead==''"><!-- " -->
+						jQuery(function($){
+							var top_search_typeahead = [{$li->top_search_typeahead}].sort();
+							jQuery("#top_search .search-query").typeahead({source:top_search_typeahead,itmes:5});
+						});
+					</script>
+					<input type="hidden" name="vid" value="{$vid}" />
+					<input type="hidden" name="mid" value="{$mid}" />
+					<input type="hidden" name="act" value="IS" />
+					<input type="search" name="is_keyword" value="{$is_keyword}" title="{$lang->cmd_search}" placeholder="{$lang->cmd_search}"  data-provide="typeahead" data-provide="typeahead" data-times="5" data-source="['test','test1']" autocomplete="off"  style="margin-bottom:0" x-webkit-speech />
+				</form>
+			</div>
+		</li>
+	</ul>
+</header>

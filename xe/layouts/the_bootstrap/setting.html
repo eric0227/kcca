@@ -1,0 +1,92 @@
+{@
+	$li=$layout_info;$dispAdminTheme_link=getUrl('act','dispAdminTheme');
+	//$is_not_mv = !(Mobile::isFromMobilePhone() && !$_COOKIE['fakeM']);
+	$is_not_mv = !(Mobile::isFromMobilePhone() && !Mobile::isMobilePadCheckByAgent() && !$_COOKIE['fakeM']);
+
+	$_program_name = 'the_bootstrap';
+	$_program_version = '3.5.0.1';
+	$_analytics_server = 'http://www.wincomi.com/analytics/xe.php';
+	$_analytics_host_info = '?name='.$_program_name.'&program_version='.$_program_version.'&site_domain='.urlencode(getenv('HTTP_HOST')).'&php='.phpversion().'&xe_version='.__XE_VERSION__.'&user_agent='.urlencode(getenv('HTTP_USER_AGENT'));
+	$_analytics_url = $_analytics_server.$_analytics_host_info;
+
+	
+	Context::set("admin_bar","false");
+	$li->site_frame_content = explode(',',$li->site_frame_content);
+	if(in_array($mid,$li->site_frame_content)) $li->site_frame='content';
+}
+<!--@if($lang_type=='ko')-->
+{@
+	$lang->tb_more="더보기";
+	$lang->tb_message="쪽지";
+	$lang->tb_theme="테마";
+	$lang->tb_site="사이트";
+	$lang->tb_message_alaram_title="쪽지 알림";
+	$lang->tb_admin_only_content="";
+	$lang->tb_socialxe_social_info="소셜 정보";
+	$lang->tb_not_readed_message="개의 읽지 않은 쪽지가 있습니다.";
+}
+<!--@else-->
+{@
+	$lang->tb_more="More...";
+	$lang->tb_message="Message";	
+	$lang->tb_theme="Theme";
+	$lang->tb_site="Site";
+	$lang->tb_message_alaram_title="New Message";
+	$lang->tb_admin_only_content ="";
+	$lang->tb_socialxe_social_info="Social Infomation";
+	$lang->tb_not_readed_message="";
+}
+<!--@end-->
+
+<!--// js -->
+<load target="js/bootstrap.min.js" type="body" />
+<load target="js/script.min.js" type="body" />
+<load target="css/prettify.css" cond="$li->pretty_print=='yes'" />
+<load target="js/prettify.js"  type="body" cond="$li->pretty_print=='yes'" />
+<load target="custom/custom_js.js" cond="$li->custom_js_js=='yes'" type="body" />
+
+<!--// default settings -->
+{@
+	if(!$li->xe_version) $li->xe_version="xe17";
+	if(!$li->design) $li->design="default";
+	if(!$li->frame) $li->frame="fluid";
+	if(!$li->responsive) $li->responsive="yes";
+	if(!$li->sb_width) $li->sb_width="2";
+	if(!$li->sb_recent_doc_count) $li->sb_recent_doc_count='5';
+	if(!$li->sb_recent_comm_count) $li->sb_recent_comm_count='5';
+	if(!$li->site_template) $li->site_template='default';
+	if(!$li->logo_title) $li->logo_title='The Bootstrap';
+	if(!$li->default_bg_img) $li->default_bg_img="noise_lines";
+	if(!$li->footer_depth) $li->footer_depth="depth3";
+	if($li->responsive=='no'&&!$li->container_width) $li->container_width="940";
+	$force_content = explode(',',$li->force_content);
+	$carousel_place = explode(',',$li->carousel_place);
+}
+<block cond="in_array($mid, $force_content)">{@$li->frame='fixed'}</block>
+<!--@if($li->xe_version=="xe17")-->
+	<unload target="/common/css/bootstrap.min.css" />
+	<unload target="/common/css/bootstrap-responsive.min.css" />
+	{Context::set("admin_bar", "false")}
+<!--@end-->
+
+<!--@switch($li->design)-->
+	<!--@case 'custom'--><load target="custom/custom_skin.css" /><!--@break-->
+	<!--@case 'cerulean'--><load target="design/cerulean.min.css" /><!--@break-->
+	<!--@case 'simplex'--><load target="design/simplex.min.css" /><!--@break-->
+	<!--@case 'ubuntu'--><load target="design/ubuntu.min.css" /><!--@break-->
+	<!--@case 'cosmo'--><load target="design/cosmo.min.css" /><!--@break-->
+	<!--@default-->
+			<load target="css/bootstrap.min.css" />
+	<!--@break-->
+<!--@end-->
+
+<!--@if($li->responsive!='no')-->
+	<block cond="!$_COOKIE['fakeM']">{@Context::addHtmlHeader('<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=yes" />')}</block>
+	<load target="css/bootstrap-responsive.min.css" />
+<!--@end-->
+<load target="css/font-awesome-ie7.min.css" targetie="IE 7" />
+<load target="css/style.min.css" />
+<style id="style_cond"><include target="css/style_cond.min.css" /></style>
+<script id="script_cond"><include target="js/script_cond.min.js" /></script>
+<load target="custom/custom_style.css" cond="$li->custom_style_css=='yes'" />
+<script src="http://www.google.com/jsapi" cond="$li->fontface=='yes'&&$is_not_mv"></script>

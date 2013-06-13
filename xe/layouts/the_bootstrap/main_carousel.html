@@ -1,0 +1,65 @@
+<include target="custom/custom_carousel_replace.html" cond="$li->custom_carousel_replace=='yes'" />
+<div id="main_carousel" class="carousel slide thumbnail carousel-{$li->carousel_animate}" cond="$li->custom_carousel_replace!='yes'">
+	<ol class="carousel-indicators" cond="$li->carousel_c2_img">
+		<li data-target="#main_carousel" data-slide-to="0" class="active"></li>
+		<li data-target="#main_carousel" data-slide-to="1"></li>
+		<li data-target="#main_carousel" data-slide-to="2" cond="$li->carousel_c3_img"></li>
+		<li data-target="#main_carousel" data-slide-to="3" cond="$li->carousel_c4_img"></li>
+		<li data-target="#main_carousel" data-slide-to="4" cond="$li->carousel_c5_img"></li>
+	</ol>
+	<div class="carousel-inner">
+		<div class="active item">
+			<!--@if(!$li->carousel_c1_img)-->
+			<a href="http://xe.pe.kr"><img src="./img/1200x500.gif" alt="" /></a>
+			<div class="carousel-caption<!--@if($li->site_template=='carousel')--> container<!--@end-->">
+				<h4>Upload Image</h4>
+				<p>Please upload image file.</p>
+			</div>
+			<!--@else-->
+			<a href="{$li->carousel_c1_url}" cond="$li->carousel_c1_url"><img src="{$li->carousel_c1_img}" alt="" /></a>
+			<img src="{$li->carousel_c1_img}" alt="" cond="!$li->carousel_c1_url" />
+			<div class="carousel-caption<!--@if($li->site_template=='carousel')--> container<!--@end-->"  cond="$li->carousel_c1_text">
+				<h4>{$li->carousel_c1_text}</h4>
+				<p>{$li->carousel_c1_content}</p>
+			</div>
+			<!--@end-->
+		</div>
+		<div class="item" cond="$li->carousel_c2_img">
+			<a href="{$li->carousel_c2_url}" cond="$li->carousel_c2_url"><img src="{$li->carousel_c2_img}" alt="" /></a>
+			<img src="{$li->carousel_c2_img}" alt="" cond="!$li->carousel_c2_url" />
+			<div class="carousel-caption<!--@if($li->site_template=='carousel')--> container<!--@end-->" cond="$li->carousel_c2_text">
+				<h4>{$li->carousel_c2_text}</h4>
+				<p cond="$li->carousel_c2_content">{$li->carousel_c2_content}</p>
+			</div>
+		</div>
+		<div class="item" cond="$li->carousel_c3_img">
+			<a href="{$li->carousel_c3_url}" cond="$li->carousel_c3_url"><img src="{$li->carousel_c3_img}" alt="" /></a>
+			<img src="{$li->carousel_c3_img}" alt="" cond="!$li->carousel_c3_url" />
+			<div class="carousel-caption<!--@if($li->site_template=='carousel')--> container<!--@end-->" cond="$li->carousel_c3_text">
+				<h4>{$li->carousel_c3_text}</h4>
+				<p cond="$li->carousel_c3_content">{$li->carousel_c3_content}</p>
+			</div>
+		</div>
+		<div class="item" cond="$li->carousel_c4_img">
+			<a href="{$li->carousel_c4_url}" cond="$li->carousel_c4_url"><img src="{$li->carousel_c4_img}" alt="" /></a>
+			<img src="{$li->carousel_c4_img}" alt="" cond="!$li->carousel_c4_url" />
+			<div class="carousel-caption<!--@if($li->site_template=='carousel')--> container<!--@end-->" cond="$li->carousel_c4_text">
+				<h4>{$li->carousel_c4_text}</h4>
+				<p cond="$li->carousel_c4_content">{$li->carousel_c4_content}</p>
+			</div>
+		</div>
+		<div class="item" cond="$li->carousel_c5_img">
+			<a href="{$li->carousel_c5_url}" cond="$li->carousel_c5_url"><img src="{$li->carousel_c5_img}" alt="" /></a>
+			<img src="{$li->carousel_c5_img}" alt="" cond="!$li->carousel_c5_url" />
+			<div class="carousel-caption<!--@if($li->site_template=='carousel')--> container<!--@end-->"  cond="$li->carousel_c5_text">
+				<h4>{$li->carousel_c5_text}</h4>
+				<p cond="$li->carousel_c5_content">{$li->carousel_c5_content}</p>
+			</div>
+		</div>
+	</div>
+	<block cond="$li->carousel_c2_img">
+		<a class="carousel-control left" href="#main_carousel" data-slide="prev">&lsaquo;</a>
+		<a class="carousel-control right" href="#main_carousel" data-slide="next">&rsaquo;</a>
+	</block>
+</div>
+<div class="clearfix"></div>
